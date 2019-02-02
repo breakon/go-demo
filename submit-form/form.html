@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*"> 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试接口</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+ let url = "http://localhost:8080/login";//接口地址 
+ let formData = new FormData();
+ formData.append('Token','login');
+ formData.append('username', 'breakon');
+ formData.append('password', '123456'); 
+  
+ fetch(url,{
+     method: 'post',
+     body: formData,
+     mode:'cors', 
+ }).then(function (res) {
+     console.log(res)
+     console.log(res.headers.get('Content-Type')); 
+     return res.json();
+ }).then(function (res) {
+         console.log(res)
+     
+ })
+</script>
