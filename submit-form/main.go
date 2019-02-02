@@ -20,12 +20,15 @@ func main() {
  */
 func disposeForm(w http.ResponseWriter, r *http.Request) {
 
-	// if r.ParseForm() != nil {
-	// 	fmt.Println(r.ParseForm())
-	// 	w.WriteHeader(http.StatusInternalServerError) // Proper HTTP response
-	// 	return
-	// }
-	fmt.Println("接收到的值", r.PostFormValue(""))
+	fmt.Println("判断是否提交表单非法", r.PostFormValue("Token"))
+	if r.PostFormValue("Token") == "" {
+		fmt.Println(r.ParseForm())
+		w.WriteHeader(http.StatusInternalServerError) // Proper HTTP response
+		fmt.Fprintf(w, "请求非法,验证失败")
+		return
+	}
+
+	fmt.Println("接收到的值")
 	var bodyAll = r.PostForm
 	var user = r.PostForm["username"][0]
 
